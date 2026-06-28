@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1020">
+<title>Mulya Sakti Muhammad — Halo AI Role Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #09152A;
+    --card:    #0F1F3A;
+    --card2:   #142545;
+    --border:  rgba(0, 210, 228, 0.11);
+    --teal:    #00D2E4;
+    --gold:    #F5B942;
+    --green:   #10D98A;
+    --text:    #F0F4FA;
+    --text2:   #8DA4BE;
+    --text3:   #4E6580;
+    --p1:      #3B82F6;
+    --p2:      #A855F7;
+    --p3:      #06B6D4;
+    --p4:      #10B981;
+    --s1:      #F87171;
+    --s2:      #FB923C;
+    --s3:      #FBBF24;
+    --s4:      #A78BFA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    width: 1020px;
+    margin: 0 auto;
+    padding: 36px 36px 40px;
+  }
+
+  /* ── HEADER ─────────────────────────────── */
+  .header {
+    background: linear-gradient(130deg, #0F1F3A 0%, #152E50 100%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 36px 28px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(0,210,228,0.07) 0%, transparent 68%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: rgba(0,210,228,0.09);
+    border: 1px solid rgba(0,210,228,0.22);
+    color: var(--teal);
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 4px 13px;
+    border-radius: 100px; margin-bottom: 14px;
+  }
+  .badge-dot {
+    width: 6px; height: 6px;
+    background: var(--teal); border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+  .header h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 26px; font-weight: 800; color: var(--text);
+    margin-bottom: 3px;
+  }
+  .header .role {
+    font-size: 14px; font-weight: 600;
+    color: var(--teal); margin-bottom: 11px;
+  }
+  .header .tagline {
+    font-size: 13px; color: var(--text2);
+    line-height: 1.65; max-width: 640px;
+  }
+  .header-meta {
+    display: flex; gap: 22px; margin-top: 15px; flex-wrap: wrap;
+  }
+  .meta-item {
+    font-size: 11px; color: var(--text3);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .meta-item span { color: var(--text2); }
+
+  /* ── KPI ROW ─────────────────────────────── */
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px; margin-bottom: 20px;
+  }
+  .kpi-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px; text-align: center;
+  }
+  .kpi-number {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 30px; font-weight: 800;
+    color: var(--gold); line-height: 1; margin-bottom: 7px;
+  }
+  .kpi-label {
+    font-size: 11.5px; color: var(--text2); line-height: 1.45;
+  }
+
+  /* ── SECTION HEADERS ─────────────────────── */
+  .eyebrow {
+    font-size: 9.5px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--teal); margin-bottom: 3px;
+  }
+  .sec-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 17px; font-weight: 700; color: var(--text);
+  }
+
+  /* ── PIPELINE ────────────────────────────── */
+  .pipeline-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 28px 26px;
+    margin-bottom: 20px;
+  }
+  .pipeline-sub {
+    font-size: 12px; color: var(--text3); margin-top: 3px; margin-bottom: 22px;
+  }
+  .pipeline-flow {
+    display: flex; align-items: stretch;
+  }
+
+  .endpoint {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-width: 84px;
+  }
+  .ep-label {
+    font-size: 9px; font-weight: 700; letter-spacing: .09em;
+    text-transform: uppercase; color: var(--text3);
+    margin-bottom: 7px; text-align: center;
+  }
+  .ep-box-in {
+    background: rgba(255,255,255,0.04);
+    border: 1px dashed rgba(255,255,255,0.13);
+    border-radius: 8px; padding: 10px 10px;
+    text-align: center; font-size: 11px;
+    color: var(--text2); line-height: 1.45;
+  }
+  .ep-box-out {
+    background: rgba(16,217,138,0.07);
+    border: 1px solid rgba(16,217,138,0.22);
+    border-radius: 8px; padding: 10px 10px;
+    text-align: center; font-size: 11px;
+    color: var(--green); font-weight: 600; line-height: 1.45;
+  }
+
+  .arr {
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 7px; color: var(--text3); font-size: 16px;
+    flex-shrink: 0; align-self: center; padding-top: 22px;
+  }
+
+  .phase-card {
+    flex: 1; background: var(--card2);
+    border-radius: 11px; padding: 16px 14px;
+    border-top: 3px solid;
+    display: flex; flex-direction: column;
+    min-width: 0;
+  }
+  .p1 { border-top-color: var(--p1); }
+  .p2 { border-top-color: var(--p2); }
+  .p3 { border-top-color: var(--p3); }
+  .p4 { border-top-color: var(--p4); }
+
+  .phase-num {
+    font-size: 9px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 4px;
+  }
+  .p1 .phase-num { color: var(--p1); }
+  .p2 .phase-num { color: var(--p2); }
+  .p3 .phase-num { color: var(--p3); }
+  .p4 .phase-num { color: var(--p4); }
+
+  .phase-name {
+    font-size: 12.5px; font-weight: 700; color: var(--text);
+    margin-bottom: 10px; line-height: 1.35;
+  }
+  .phase-list {
+    list-style: none; flex: 1; margin-bottom: 11px;
+  }
+  .phase-list li {
+    font-size: 10.5px; color: var(--text2);
+    padding: 2.5px 0 2.5px 11px; position: relative;
+    line-height: 1.45;
+  }
+  .phase-list li::before {
+    content: '·'; position: absolute; left: 0; color: var(--text3);
+  }
+  .phase-out {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 6px; padding: 8px 10px;
+  }
+  .phase-out-label {
+    font-size: 8.5px; font-weight: 700; letter-spacing: .07em;
+    text-transform: uppercase; color: var(--text3);
+    margin-bottom: 2px; display: block;
+  }
+  .phase-out span {
+    font-size: 10.5px; color: var(--text2); line-height: 1.4;
+  }
+
+  /* ── PORTFOLIO ───────────────────────────── */
+  .portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px; margin-top: 15px;
+  }
+  .sector-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left-width: 3px;
+    border-radius: 12px; padding: 18px 16px;
+  }
+  .sc1 { border-left-color: var(--s1); }
+  .sc2 { border-left-color: var(--s2); }
+  .sc3 { border-left-color: var(--s3); }
+  .sc4 { border-left-color: var(--s4); }
+
+  .sector-icon { font-size: 18px; margin-bottom: 7px; }
+  .sector-name {
+    font-size: 13px; font-weight: 700; color: var(--text);
+    margin-bottom: 9px; line-height: 1.3;
+  }
+  .clients { display: flex; flex-direction: column; gap: 4px; margin-bottom: 10px; }
+  .ct {
+    font-size: 10px; font-weight: 600;
+    padding: 2px 8px; border-radius: 4px;
+    display: inline-block; width: fit-content;
+  }
+  .sc1 .ct { background: rgba(248,113,113,.1); color: #FCA5A5; }
+  .sc2 .ct { background: rgba(251,146,60,.1);  color: #FDBA74; }
+  .sc3 .ct { background: rgba(251,191,36,.1);  color: #FDE68A; }
+  .sc4 .ct { background: rgba(167,139,250,.1); color: #C4B5FD; }
+
+  .sector-focus {
+    font-size: 10.5px; color: var(--text3); line-height: 1.5;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 8px; margin-top: 2px;
+  }
+
+  /* ── BOTTOM ROW ──────────────────────────── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px; margin-top: 20px;
+  }
+  .card-base {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px;
+  }
+
+  .skills-grid {
+    display: flex; flex-wrap: wrap; gap: 7px; margin-top: 14px;
+  }
+  .skill-pill {
+    font-size: 10.5px; font-weight: 600;
+    padding: 5px 13px; border-radius: 100px;
+    background: rgba(0,210,228,0.07);
+    border: 1px solid rgba(0,210,228,0.17);
+    color: var(--teal);
+  }
+
+  .prob-box, .sol-box {
+    border-radius: 8px; padding: 13px 14px; margin-top: 13px;
+  }
+  .prob-box {
+    background: rgba(239,68,68,0.05);
+    border: 1px solid rgba(239,68,68,0.14);
+  }
+  .sol-box {
+    background: rgba(16,185,129,0.05);
+    border: 1px solid rgba(16,185,129,0.14);
+  }
+  .box-lbl {
+    font-size: 9px; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; margin-bottom: 5px;
+  }
+  .prob-box .box-lbl { color: #FCA5A5; }
+  .sol-box  .box-lbl { color: #6EE7B7; }
+  .box-body { font-size: 11.5px; color: var(--text2); line-height: 1.65; }
+
+  /* ── FOOTER ──────────────────────────────── */
+  .footer {
+    text-align: center; padding-top: 20px;
+    font-size: 10.5px; color: var(--text3);
+    border-top: 1px solid rgba(255,255,255,0.05);
+    margin-top: 20px; line-height: 1.7;
+  }
+  .footer a { color: var(--teal); text-decoration: none; }
+
+  /* ── PORTFOLIO SECTION WRAPPER ───────────── */
+  .portfolio-wrap { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="badge"><div class="badge-dot"></div>Halo AI · YC S22 · Active Role</div>
+  <h1>Mulya Sakti Muhammad</h1>
+  <div class="role">B2B Product Support Specialist</div>
+  <div class="tagline">
+    I sit between Account Managers and Project Engineers — converting unstructured client business requirements into structured AI logic, so AI agents are configured correctly before they ever reach the client's hands.
+  </div>
+  <div class="header-meta">
+    <div class="meta-item">📍 <span>Jakarta, Indonesia</span></div>
+    <div class="meta-item">📅 <span>May 2026 – Present</span></div>
+    <div class="meta-item">🏢 <span>SaaS · Agentic AI · CX Automation</span></div>
+    <div class="meta-item">🎯 <span>Scope: Phase 1–4 of 6-phase pipeline</span></div>
+  </div>
+</div>
+
+<!-- KPI ROW -->
+<div class="kpi-row">
+  <div class="kpi-card">
+    <div class="kpi-number">30–40</div>
+    <div class="kpi-label">Active B2B Projects<br>Managed Simultaneously</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-number">24+</div>
+    <div class="kpi-label">B2B Client Accounts<br>Onboarded</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-number">~95%</div>
+    <div class="kpi-label">Onboarding<br>Completion Rate</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-number">5–14</div>
+    <div class="kpi-label">Working Days<br>Time-to-Value (TTV)</div>
+  </div>
+</div>
+
+<!-- PIPELINE -->
+<div class="pipeline-wrap">
+  <div class="eyebrow">My Core Workflow</div>
+  <div class="sec-title">4-Phase AI Implementation Pipeline</div>
+  <div class="pipeline-sub">What I own end-to-end — from the moment AM closes a deal, to a fully configured AI agent ready for UAT</div>
+
+  <div class="pipeline-flow">
+
+    <div class="endpoint">
+      <div class="ep-label">Entry Point</div>
+      <div class="ep-box-in">AM closes<br>the deal &<br>hands over</div>
+    </div>
+
+    <div class="arr">→</div>
+
+    <div class="phase-card p1">
+      <div class="phase-num">Phase 01</div>
+      <div class="phase-name">Handover &<br>Briefing</div>
+      <ul class="phase-list">
+        <li>Receive contract & client expectations from AM</li>
+        <li>Study industry context & use case</li>
+        <li>Identify scope, risks & constraints</li>
+      </ul>
+      <div class="phase-out">
+        <span class="phase-out-label">↓ Output</span>
+        <span>Project brief + scoped requirement checklist</span>
+      </div>
+    </div>
+
+    <div class="arr">→</div>
+
+    <div class="phase-card p2">
+      <div class="phase-num">Phase 02</div>
+      <div class="phase-name">Requirement<br>Gathering</div>
+      <ul class="phase-list">
+        <li>Run kick-off meeting with client</li>
+        <li>Collect SOPs, FAQs, tone of voice, catalogs</li>
+        <li>Cross-check prior shared data with AM/PE via kickoff transcript</li>
+      </ul>
+      <div class="phase-out">
+        <span class="phase-out-label">↓ Output</span>
+        <span>Complete, verified data package for setup</span>
+      </div>
+    </div>
+
+    <div class="arr">→</div>
+
+    <div class="phase-card p3">
+      <div class="phase-num">Phase 03</div>
+      <div class="phase-name">Internal Setup<br>& Configuration</div>
+      <ul class="phase-list">
+        <li>Build Knowledge Base in Halo Pulse dashboard</li>
+        <li>Define AI guardrails & constraints</li>
+        <li>Write Boolean / If-Else decision logic trees</li>
+      </ul>
+      <div class="phase-out">
+        <span class="phase-out-label">↓ Output</span>
+        <span>Configured AI agent with validated logic</span>
+      </div>
+    </div>
+
+    <div class="arr">→</div>
+
+    <div class="phase-card p4">
+      <div class="phase-num">Phase 04</div>
+      <div class="phase-name">Technical<br>Coordination</div>
+      <ul class="phase-list">
+        <li>Coordinate API / Webhook / ERP with Project Engineers</li>
+        <li>Manage token exchange & endpoint documentation</li>
+        <li>Validate integration completeness & coverage</li>
+      </ul>
+      <div class="phase-out">
+        <span class="phase-out-label">↓ Output</span>
+        <span>Fully integrated AI — technically complete</span>
+      </div>
+    </div>
+
+    <div class="arr">→</div>
+
+    <div class="endpoint">
+      <div class="ep-label">Final Output</div>
+      <div class="ep-box-out">AI Agent<br>Ready for<br>UAT ✓</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CLIENT PORTFOLIO -->
+<div class="portfolio-wrap">
+  <div class="eyebrow" style="margin-top:20px;">Client Portfolio</div>
+  <div class="sec-title">Industries & Clients Served</div>
+  <div class="portfolio-grid">
+    <div class="sector-card sc1">
+      <div class="sector-icon">🏥</div>
+      <div class="sector-name">Healthcare &<br>Aesthetics</div>
+      <div class="clients">
+        <span class="ct">AFK Beauty</span>
+        <span class="ct">One Icon Dental</span>
+      </div>
+      <div class="sector-focus">Medical guardrails, appointment scheduling (1 Calendar = 1 Doctor), no-diagnosis rules, 5-min escalation for red flags</div>
+    </div>
+    <div class="sector-card sc2">
+      <div class="sector-icon">👗</div>
+      <div class="sector-name">Retail &<br>Fashion</div>
+      <div class="clients">
+        <span class="ct">Mel Store</span>
+        <span class="ct">707 Store</span>
+        <span class="ct">Brand ON</span>
+      </div>
+      <div class="sector-focus">Shopify catalog sync, defect complaint flows, size exchange & PO logic, tracking number handling</div>
+    </div>
+    <div class="sector-card sc3">
+      <div class="sector-icon">🍜</div>
+      <div class="sector-name">F&B &<br>Hospitality</div>
+      <div class="clients">
+        <span class="ct">Bakmi Tiga Mangkok</span>
+        <span class="ct">Pulas Villa</span>
+        <span class="ct">Catering Fatimah</span>
+      </div>
+      <div class="sector-focus">Dine-in reservations, bulk catering T&Cs, loyalty programs, property survey scheduling</div>
+    </div>
+    <div class="sector-card sc4">
+      <div class="sector-icon">🏢</div>
+      <div class="sector-name">B2B<br>Services</div>
+      <div class="clients">
+        <span class="ct">Lotus Group</span>
+        <span class="ct">RUMIA</span>
+        <span class="ct">Solsica Music</span>
+      </div>
+      <div class="sector-focus">Tiered pricing & wholesale discount logic, CRM funnel flows, MOQ (Minimum Order Qty) rules</div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM ROW -->
+<div class="bottom-row">
+  <div class="card-base">
+    <div class="eyebrow">Technical Stack</div>
+    <div class="sec-title">Tools & Skills Applied</div>
+    <div class="skills-grid">
+      <span class="skill-pill">WABA / WAHA</span>
+      <span class="skill-pill">Boolean Logic Matrix</span>
+      <span class="skill-pill">If-Else Decision Trees</span>
+      <span class="skill-pill">Knowledge Base Config</span>
+      <span class="skill-pill">AI Guardrails Design</span>
+      <span class="skill-pill">Shopify Catalog Sync</span>
+      <span class="skill-pill">API / Webhook</span>
+      <span class="skill-pill">ERP Integration</span>
+      <span class="skill-pill">Google Calendar Arch.</span>
+      <span class="skill-pill">5-Level Escalation Tree</span>
+      <span class="skill-pill">Halo Pulse Dashboard</span>
+      <span class="skill-pill">Trigger & Reaction Matrix</span>
+    </div>
+  </div>
+
+  <div class="card-base">
+    <div class="eyebrow">Operational Insight</div>
+    <div class="sec-title">Key Challenge → Solution</div>
+    <div class="prob-box">
+      <div class="box-lbl">⚠ Challenge</div>
+      <div class="box-body">Ambiguity during requirement gathering — risk of re-requesting data that clients already shared with AM or PE at kickoff (via private chat, links, or files), causing unnecessary friction and eroding client trust.</div>
+    </div>
+    <div class="sol-box">
+      <div class="box-lbl">✓ Solution Applied</div>
+      <div class="box-body">Always review AI meeting transcriptions from kickoff sessions to map exactly what was discussed and what data was already shared — then align with AM/PE before requesting anything from the client again.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong style="color: var(--teal);">Mulya Sakti Muhammad</strong> &nbsp;·&nbsp;
+  sakti.mulya05@gmail.com &nbsp;·&nbsp;
+  <a href="https://linkedin.com/in/mulya-sakti-muhammad-62450919b" target="_blank">LinkedIn</a> &nbsp;·&nbsp;
+  <a href="https://mulyasm.my.canva.site" target="_blank">mulyasm.my.canva.site</a>
+  <br>
+  <span style="color: var(--text3); font-size: 10px;">B2B Product Support Specialist · Halo AI YC S22 · Jakarta · May 2026 – Present</span>
+</div>
+
+</body>
+</html>
