@@ -256,8 +256,8 @@
   .sc4 .ct { background: rgba(167,139,250,.1); color: #C4B5FD; }
 
   .sector-focus {
-    font-size: 10.5px; color: var(--text2); line-height: 1.5;
-    border-top: 1px solid rgba(255,255,255,0.30);
+    font-size: 10.5px; color: var(--text3); line-height: 1.5;
+    border-top: 1px solid rgba(255,255,255,0.05);
     padding-top: 8px; margin-top: 2px;
   }
 
@@ -302,6 +302,85 @@
   .prob-box .box-lbl { color: #FCA5A5; }
   .sol-box  .box-lbl { color: #6EE7B7; }
   .box-body { font-size: 11.5px; color: var(--text2); line-height: 1.65; }
+
+  /* ── CASE STUDY SECTION ─────────────────── */
+  .casestudy-wrap {
+    margin-bottom: 20px;
+  }
+  .casestudy-sub {
+    font-size: 12px; color: var(--text3); margin-top: 3px; margin-bottom: 16px;
+  }
+  .casestudy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cs-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .cs-image {
+    height: 150px;
+    background: linear-gradient(135deg, #152E50 0%, #0F1F3A 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .cs-image-icon { font-size: 38px; opacity: 0.85; }
+  .cs-image.cs-soon { background: linear-gradient(135deg, #11203C 0%, #0C1830 100%); }
+  .cs-image.cs-soon .cs-image-icon { opacity: 0.3; }
+
+  .cs-body {
+    padding: 18px 20px 20px;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .cs-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 9.5px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase;
+    background: rgba(0,210,228,0.09);
+    border: 1px solid rgba(0,210,228,0.22);
+    color: var(--teal);
+    padding: 4px 11px; border-radius: 100px;
+    width: fit-content; margin-bottom: 12px;
+  }
+  .cs-tag.cs-tag-soon {
+    background: rgba(141,164,190,0.08);
+    border: 1px solid rgba(141,164,190,0.18);
+    color: var(--text3);
+  }
+  .cs-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px; font-weight: 800;
+    color: var(--gold);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+  .cs-title.cs-title-soon { color: var(--text3); }
+  .cs-desc {
+    font-size: 11.5px; color: var(--text2);
+    line-height: 1.6; flex: 1; margin-bottom: 16px;
+  }
+  .cs-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600;
+    color: var(--bg);
+    background: var(--teal);
+    padding: 8px 16px; border-radius: 8px;
+    width: fit-content; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .cs-btn:hover { opacity: 0.85; }
+  .cs-btn-soon {
+    background: rgba(255,255,255,0.05);
+    color: var(--text3);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: default;
+  }
 
   /* ── OPERATIONAL INSIGHTS SECTION ───────── */
   .insights-wrap {
@@ -395,7 +474,7 @@
     <div class="kpi-label">Active B2B Projects<br>Managed Simultaneously</div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-number">25+</div>
+    <div class="kpi-number">24+</div>
     <div class="kpi-label">B2B Client Accounts<br>Onboarded</div>
   </div>
   <div class="kpi-card">
@@ -418,22 +497,22 @@
 
     <div class="endpoint">
       <div class="ep-label">Entry Point</div>
-      <div class="ep-box-in">AM closes<br>the kick-off meeting &<br>hands over</div>
+      <div class="ep-box-in">Client closed<br>& Kickoff<br>completed</div>
     </div>
 
     <div class="arr">→</div>
 
     <div class="phase-card p1">
       <div class="phase-num">Phase 01</div>
-      <div class="phase-name">Handover &<br>Briefing</div>
+      <div class="phase-name">Post-Kickoff<br>Alignment</div>
       <ul class="phase-list">
-        <li>Receive comprehensive business flow & client expectations from AM</li>
-        <li>Study industry context & use case</li>
-        <li>Identify scope, risks & constraints</li>
+        <li>Review AI kickoff transcript — map business flow, industry constraints & automation scope</li>
+        <li>Cross-check with AM/PE on remaining data gaps</li>
+        <li>Analyze client "character type" to tailor call vs chat approach</li>
       </ul>
       <div class="phase-out">
         <span class="phase-out-label">↓ Output</span>
-        <span>Project brief & kick-off transcrit + scoped requirement checklist</span>
+        <span>Validated requirement checklist + communication strategy</span>
       </div>
     </div>
 
@@ -441,15 +520,15 @@
 
     <div class="phase-card p2">
       <div class="phase-num">Phase 02</div>
-      <div class="phase-name">Requirement<br>Gathering</div>
+      <div class="phase-name">Requirement Gathering<br>& SLA Management</div>
       <ul class="phase-list">
-        <li>Consistently coordinating with client for data gathering requirement in G-Docs, with SLA-Approach</li>
-        <li>Collect FAQs, API Ext. Platform (if needed), catalogs and anything else for knowledge base</li>
-        <li>Cross-check prior shared data with AM/PE via kickoff transcript</li>
+        <li>Manage project tracker dashboard for data-gathering status</li>
+        <li>SLA-based structured comms templates to chase client docs</li>
+        <li>Proactive escalation (H-2 alignment call) to prevent SLA slippage</li>
       </ul>
       <div class="phase-out">
         <span class="phase-out-label">↓ Output</span>
-        <span>Complete, verified data package for AI Agent setup</span>
+        <span>Complete client data package, collected on-SLA</span>
       </div>
     </div>
 
@@ -457,15 +536,15 @@
 
     <div class="phase-card p3">
       <div class="phase-num">Phase 03</div>
-      <div class="phase-name">Internal Setup<br>& Handover to Engineers</div>
+      <div class="phase-name">KB Structuring &<br>Guardrail Definition</div>
       <ul class="phase-list">
-        <li>Maintan & Structurise AI Knowledge Base in Google Document</li>
-        <li>Define AI guardrails & constraints, as well as data requirement summary</li>
-        <li>Coordinate and Explain to Project Engineer regarding data requirement result</li>
+        <li>Simulate end-to-end AI–customer conversations to find gaps</li>
+        <li>Define AI guardrails so data is machine-readable & hallucination-proof</li>
+        <li>e.g. dental case: schedule params, service duration, "1 Calendar = 1 Doctor" double-booking prevention</li>
       </ul>
       <div class="phase-out">
         <span class="phase-out-label">↓ Output</span>
-        <span>Complete & Seamless Knowledge Base Handoverc</span>
+        <span>Finalized Knowledge Base with validated logic</span>
       </div>
     </div>
 
@@ -473,15 +552,15 @@
 
     <div class="phase-card p4">
       <div class="phase-num">Phase 04</div>
-      <div class="phase-name">Technical<br>Coordination</div>
+      <div class="phase-name">Technical Coordination<br>(Business → Engineering)</div>
       <ul class="phase-list">
-        <li>Coordinate API / External Integration / ERP with PE</li>
-        <li>Manage project progress & timeline</li>
-        <li>Once in a while, ask AI Implementation Progress to PE</li>
+        <li>Handover finalized KB + updated timeline to Project Engineer</li>
+        <li>Translate API/ERP integration (Accurate, Jubelio, Shopify) into client-friendly instructions</li>
+        <li>Monitor progress with PE to clear operational blockers</li>
       </ul>
       <div class="phase-out">
         <span class="phase-out-label">↓ Output</span>
-        <span>Fully integrated AI — technically complete in timeline agreed</span>
+        <span>AI Agent technically integrated — Go-Live ready</span>
       </div>
     </div>
 
@@ -490,6 +569,43 @@
     <div class="endpoint">
       <div class="ep-label">Final Output</div>
       <div class="ep-box-out">AI Agent<br>Ready for<br>UAT ✓</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CASE STUDY -->
+<div class="casestudy-wrap">
+  <div class="eyebrow">Behind The Scenes</div>
+  <div class="sec-title">Case Study Articles</div>
+  <div class="casestudy-sub">Deep-dive breakdowns of how I executed the 4-phase pipeline on real client projects</div>
+
+  <div class="casestudy-grid">
+
+    <!-- Case Study 1 — Published -->
+    <div class="cs-card">
+      <div class="cs-image">
+        <div class="cs-image-icon">🦷</div>
+      </div>
+      <div class="cs-body">
+        <span class="cs-tag">Healthcare · Dental Clinic</span>
+        <div class="cs-title">Behind the Scene AI Implementation SaaS: Bridging Business Needs With Techmical Logic</div>
+        <div class="cs-desc">A full phase-by-phase breakdown of how an AI appointment system was built for a dental clinic — from post-kickoff alignment to Go-Live, including the Google Calendar guardrail architecture that prevents double-booking.</div>
+        <a href="#" target="_blank" class="cs-btn">Read Full Article ↗</a>
+      </div>
+    </div>
+
+    <!-- Case Study 2 — Coming Soon -->
+    <div class="cs-card">
+      <div class="cs-image cs-soon">
+        <div class="cs-image-icon">📝</div>
+      </div>
+      <div class="cs-body">
+        <span class="cs-tag cs-tag-soon">Coming Soon</span>
+        <div class="cs-title cs-title-soon">Next Case Study — In Progress</div>
+        <div class="cs-desc">A new breakdown is in the works, covering another industry vertical and the unique implementation challenges encountered along the way.</div>
+        <span class="cs-btn cs-btn-soon">Coming Soon</span>
+      </div>
     </div>
 
   </div>
@@ -600,17 +716,18 @@
   <div class="eyebrow">Technical Stack</div>
   <div class="sec-title">Tools & Skills Applied</div>
   <div class="skills-grid">
-    <span class="skill-pill">WABA / WAHA Use Case</span>
+    <span class="skill-pill">WABA / WAHA</span>
     <span class="skill-pill">Boolean Logic Matrix</span>
     <span class="skill-pill">If-Else Decision Trees</span>
-    <span class="skill-pill">Knowledge Base Configuration</span>
+    <span class="skill-pill">Knowledge Base Config</span>
     <span class="skill-pill">AI Guardrails Design</span>
     <span class="skill-pill">Shopify Catalog Sync</span>
+    <span class="skill-pill">API / Webhook</span>
+    <span class="skill-pill">ERP Integration</span>
     <span class="skill-pill">Google Calendar Arch.</span>
+    <span class="skill-pill">5-Level Escalation Tree</span>
+    <span class="skill-pill">Halo Pulse Dashboard</span>
     <span class="skill-pill">Trigger & Reaction Matrix</span>
-    <span class="skill-pill">Business Acumen & Empathy</span>
-    <span class="skill-pill">Customer Support</span>
-    <span class="skill-pill">Attention to Detail & SLA Approachment</span>
   </div>
 </div>
 
